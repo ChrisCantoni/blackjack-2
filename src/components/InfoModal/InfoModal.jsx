@@ -8,7 +8,7 @@ function InfoModal({closeModal}) {
         }}>
             <div className="modal">
                 <h3>How to Play</h3>
-                <p>To start, there are no cards. To create the decks for playing, click <em>"Shuffle the Shoe."</em>
+                <p>To start, there are no cards. To create the decks for playing, click <em>Shuffle the Shoe</em>. 
                     The Shoe contains <strong>two</strong> full decks, so it's possible you will encounter the same card. 
                     This isn't a bug, it's part of the fun!
                 </p>

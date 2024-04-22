@@ -55,7 +55,6 @@ function Table() {
     }
 
     const dealRandomCards = () => {
-        console.log('Card Count at start', cardCount)
         const randomIndex = Math.floor(Math.random() * deck.length);
         const dealtCard = deck[randomIndex];
     
@@ -66,7 +65,6 @@ function Table() {
             } else {
                 setCardCount(prevCount => prevCount -1)
             }
-            console.log('End deal card count', cardCount)
         return dealtCard;
     };
     
@@ -77,8 +75,8 @@ function Table() {
         }
         else if (deck.length == 0) {
             Swal.fire({
-                title: "You haven't shuffled the deck!",
-                text: "You need to click the button that says shuffle the deck",
+                title: "You haven't shuffled the shoe!",
+                text: "You need to click the button that says shuffle the shoe.",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -87,7 +85,6 @@ function Table() {
               }).then((result) => {
                 if (result.isConfirmed) {
                   createDeck();
-                  setGameStatus(true)
                   Swal.fire({
                     title: "Shuffled!",
                     text: "Now try dealing those cards again.",
@@ -242,7 +239,6 @@ function Table() {
 
     useEffect(() => {
         const dealerTotal = calculateValue(dealerHand);
-        console.log('dealer total', dealerTotal);
         if (revealDealer && dealerHand.length > 0) {
             setTimeout(() => calculateWinner(), 1500);
         } else if (dealerTotal === 21) {
@@ -250,6 +246,12 @@ function Table() {
             setWinner('Blackjack! Dealer wins!')
         }
     }, [dealerHand, revealDealer]);
+
+    useEffect(() => {
+        if (gameStatus && deck.length < 10) {
+            createDeck();
+        }
+    }, [deck])
 
 
     useEffect(() => {
@@ -273,7 +275,7 @@ function Table() {
       </Button>
       
       <div>
-        <p>Dealer hand: <br></br> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
+        <p><h4>Dealer Hand:</h4> <br></br> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
                         <div key={i}>
                         <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
                             <CardContent>
@@ -291,9 +293,11 @@ function Table() {
                                         </Typography>
                                     </CardContent>
                                 </Card> : ''}
-                                </div></p>
+                                
+                                </div>
+                                {revealDealer ? <h4>Dealer Total: {calculateValue(dealerHand)}</h4> : ''}</p>
 
-        <p>Player hand: 
+        <p><h4>Player Hand:</h4>
             <div className="playerHand">{playerHand.length > 0 ? playerHand.map((card) => {
             return (
                 <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
