@@ -263,14 +263,14 @@ function Table() {
       <h2>This is the Table!</h2>
       <h3>{winner}</h3>
       <Tooltip title={`There are ${deck.length} cards in the Shoe`}>
-        <Button variant="contained" onClick={() => createDeck()}>
+        <Button className="gameButton" variant="contained" onClick={() => createDeck()}>
             Shuffle the Shoe
         </Button>
       </Tooltip>
-      <Button variant="contained" onClick={() => dealCards()}>
+      <Button className="gameButton" variant="contained" onClick={() => dealCards()}>
         Deal Cards
       </Button>
-      <Button variant="contained" onClick={() => setToggleInfo(!toggleInfo)}>
+      <Button className="gameButton" variant="contained" onClick={() => setToggleInfo(!toggleInfo)}>
         Info
       </Button>
       
@@ -311,10 +311,10 @@ function Table() {
                 <h4>Total: {calculateValue(playerHand)}</h4>
                 {calculateValue(playerHand) > 21 ? <h4>BUST!</h4> : ''}
                 {playerStatus ? <>
-                    <Button variant="contained" onClick={() => hitCard()}>Hit</Button>
-                    <Button variant="contained" onClick={() => playerStay()}>Stand</Button>
+                    <Button className="gameButton" variant="contained" onClick={() => hitCard()}>Hit</Button>
+                    <Button className="gameButton" variant="contained" onClick={() => playerStay()}>Stand</Button>
                     {playerHand.length > 1 && (calculateValue(playerHand) == 9 || calculateValue(playerHand) == 10 || calculateValue(playerHand) == 11) ? 
-                    <Button variant="contained" onClick={() => doubleDown()}>Double Down</Button> : ''}
+                    <Button className="gameButton" variant="contained" onClick={() => doubleDown()}>Double Down</Button> : ''}
                 </> : ''
                 }
         </p>

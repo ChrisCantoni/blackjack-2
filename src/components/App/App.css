@@ -63,3 +63,7 @@ pre {
 .blackCard {
   border: 2px solid black;
 }
+
+.gameButton {
+  margin: 5px !important;
+}
