@@ -273,7 +273,6 @@ function Table() {
       </Button>
       
       <div>
-        <p>Dealer hand: {JSON.stringify(dealerHand)}.</p>
         <p>Dealer hand: <br></br> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
                         <div key={i}>
                         <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
