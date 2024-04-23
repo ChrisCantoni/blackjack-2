@@ -271,7 +271,7 @@ function Table() {
         Deal Cards
       </Button>
       <Button className="gameButton" variant="contained" onClick={() => setToggleInfo(!toggleInfo)}>
-        Info
+        How to Play
       </Button>
       
       <div>
