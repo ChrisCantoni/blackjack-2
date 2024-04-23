@@ -1,12 +1,20 @@
 import AccordionList from '../Accordion/Accordion'
+import { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 function InfoModal({closeModal}) {
+
+    const [expanded, setExpanded] = useState('')
+
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    }
 
     return (
         <div className="modal-container" onClick={(e) => {
@@ -15,13 +23,13 @@ function InfoModal({closeModal}) {
             <div className="modal">
                 <h3>How to Play</h3>
                 <div>
-      <Accordion>
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-        >
-          The Shoe
+        ><Typography className='infoTitle' sx={{ color: 'red'}}>The Shoe</Typography>
+          
         </AccordionSummary>
         <AccordionDetails>
                 To start, there are no cards. To create the decks for playing, click <em>Shuffle the Shoe</em>. 
@@ -30,11 +38,12 @@ function InfoModal({closeModal}) {
                 But if the Shoe gets too low it will automatically reshuffle.
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2-content"
           id="panel2-header"
+          className='infoTitle'
         >
           The Score
         </AccordionSummary>
@@ -46,7 +55,7 @@ function InfoModal({closeModal}) {
             You receive 2 cards to start and from there you can either receive another card, <strong>hit</strong>, or stop with the hand you have, stay.
         </AccordionDetails>
       </Accordion>
-      <Accordion >
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
