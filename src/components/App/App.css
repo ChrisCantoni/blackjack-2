@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: darkgreen;
+  border: 5px solid gold;
+  min-height: 880px;
 }
 
 .App-header {
@@ -21,12 +24,31 @@ pre {
     white-space: pre-wrap;
 }
 
+.table {
+  color: white;
+  border-top: 5px solid gold;
+  min-height: 730px;
+}
+
 
 .dealerHand {
   display: flex;
   flex-direction: row;
   margin: auto;
   justify-content: center;
+  min-height: 200px;
+}
+
+.dealerHidden {
+  border: 5px solid white;
+  background:
+  repeating-conic-gradient(from 0deg, 
+    red 0% 25%, #eee 0% 50%) 
+ 
+}
+
+.cardDisplay {
+  border: 2px dashed yellow !important;
 }
 
 .playerHand {
@@ -34,6 +56,7 @@ pre {
   flex-direction: row;
   margin: auto;
   justify-content: center;
+  min-height: 200px;
 }
 
 .modal-container {
@@ -60,11 +83,11 @@ pre {
 }
 
 .redCard {
-  border: 2px solid red;
+  border: 5px solid red;
 }
 
 .blackCard {
-  border: 2px solid black;
+  border: 5px solid black;
 }
 
 .gameButton {

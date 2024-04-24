@@ -259,8 +259,8 @@ function Table() {
     },[playerHand, dealerHand])
 
   return(
-    <div>
-      <h2>This is the Table!</h2>
+    <div className="table">
+      
       <h3>{winner}</h3>
       <Tooltip title={`There are ${deck.length} cards in the Shoe`}>
         <Button className="gameButton" variant="contained" onClick={() => createDeck()}>
@@ -274,10 +274,10 @@ function Table() {
         How to Play
       </Button>
       
-      <div>
-        <h4>Dealer Hand:</h4> <br></br> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
-                        <div key={i}>
-                        <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
+      <div className="playingArea">
+        <h4>Dealer Hand:</h4> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
+                        <div className="cardDisplay" key={i}>
+                        <Card sx={{ width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
                             <CardContent>
                                 <Typography variant="h3" color={card.suit == "Hearts" || card.suit == "Diamonds" ? "red" : 'black'}>
                                     {card.value}{cardSuit(card.suit)}
@@ -285,28 +285,42 @@ function Table() {
                             </CardContent>
                         </Card>
                         </div>
-                    ))  : dealerHand.length > 0 ? 
+                    ))  : dealerHand.length > 0 ?
+                                <><div className="cardDisplay"> 
                                 <Card sx={{width: 100, height: 150, margin: 2}} className={dealerHand[0].suit == 'Hearts' || dealerHand[0].suit == 'Diamonds' ? 'redCard' : 'blackCard'}>
                                     <CardContent>
                                         <Typography variant="h3" color={dealerHand[0].suit == 'Hearts' || dealerHand[0].suit == 'Diamonds' ? 'red' : 'black'}>
                                             {dealerHand[0].value}{cardSuit(dealerHand[0].suit)}
                                         </Typography>
                                     </CardContent>
-                                </Card> : ''}
+                                </Card>
+                                </div>
+                                <div className="cardDisplay">
+                                <Card className="dealerHidden" sx={{width: 100, height: 150, margin: 2}}>
+                                    <CardContent>
+                                        <Typography variant="h3">
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                                </div>
+                                </>
+                                 : ''}
                                 
                                 </div>
                                 {revealDealer ? <h4>Dealer Total: {calculateValue(dealerHand)}</h4> : ''}
 
         <h4>Player Hand:</h4>
-            <div className="playerHand">{playerHand.length > 0 ? playerHand.map((card) => {
+            <div className="playerHand">{playerHand.length > 0 ? playerHand.map((card, i) => {
             return (
-                <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
-                    <CardContent sx={{justifyContent: 'center'}}>
-                        <Typography variant="h3" color={card.suit == "Hearts" || card.suit == "Diamonds" ? "red" : 'black'}>
-                            {card.value}{cardSuit(card.suit)} 
-                        </Typography>
-                    </CardContent>
-                </Card>)}) : ''}
+                <div className="cardDisplay">
+                    <Card key={i} sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
+                        <CardContent sx={{justifyContent: 'center'}}>
+                            <Typography variant="h3" color={card.suit == "Hearts" || card.suit == "Diamonds" ? "red" : 'black'}>
+                                {card.value}{cardSuit(card.suit)} 
+                            </Typography>
+                        </CardContent>
+                    </Card> 
+                </div>)}) : ''}
                 </div>
                 <h4>Total: {calculateValue(playerHand)}</h4>
                 {calculateValue(playerHand) > 21 ? <h4>BUST!</h4> : ''}
