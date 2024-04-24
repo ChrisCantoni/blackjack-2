@@ -21,14 +21,15 @@ function InfoModal({closeModal}) {
             if (e.target.className === 'modal-container') closeModal();
         }}>
             <div className="modal">
-                <h3>How to Play</h3>
+                <Typography variant="h3" sx={{marginBottom: 2}}>How to Play</Typography>
                 <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
+            sx={{ backgroundColor: 'darkgreen', border: '5px solid white', borderRadius: '25px'  }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-        ><Typography className='infoTitle' sx={{ color: 'red'}}>The Shoe</Typography>
+        ><Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Shoe</Typography>
           
         </AccordionSummary>
         <AccordionDetails>
@@ -40,28 +41,44 @@ function InfoModal({closeModal}) {
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary
+            sx={{ backgroundColor: 'darkgreen', border: '5px solid white', borderRadius: '25px'  }}
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        ><Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Hit</Typography>
+          
+        </AccordionSummary>
+        <AccordionDetails>
+                Every time you choose to hit, you get another card.
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <AccordionSummary
+            sx={{ backgroundColor: 'darkgreen', border: '2px solid white', borderRadius: '25px'}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2-content"
           id="panel2-header"
           className='infoTitle'
         >
-          The Score
+          <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Score</Typography>
         </AccordionSummary>
         <AccordionDetails>
-        If you're unfamiliar with Blackjack, it's very simple. You receive cards trying to get as
+            <Typography>If you're unfamiliar with Blackjack, it's very simple. You receive cards trying to get as
             close to 21 as possible without going over. Each card is worth its number except for face cards: K, Q, J which are all worth 10.
             Aces can be worth 11 or 1. So getting an ace and a 7 would be worth 18, but if you put a five with it, the Ace becomes
             a 1 and you end up with 13. 
             You receive 2 cards to start and from there you can either receive another card, <strong>hit</strong>, or stop with the hand you have, stay.
+            </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary
+            sx={{ backgroundColor: 'darkgreen', border: '5px solid white', borderRadius: '25px'  }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          The Deal
+          <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Deal</Typography>
         </AccordionSummary>
         <AccordionDetails>
         Only one of the dealer's cards is revealed to start, however the dealer will immediately let you know if they have Blackjack and you will simply lose

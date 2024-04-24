@@ -50,11 +50,13 @@ pre {
 }
 
 .modal {
+  border: 5px solid white;
+  color: white;
   border-radius: 5px;
   padding: 2rem;
-  background-color: white;
+  background-color: darkgreen;
   width: 35em;
-  height: 500px;
+  height: 600px;
 }
 
 .redCard {

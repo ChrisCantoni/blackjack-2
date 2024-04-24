@@ -275,7 +275,7 @@ function Table() {
       </Button>
       
       <div>
-        <p><h4>Dealer Hand:</h4> <br></br> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
+        <h4>Dealer Hand:</h4> <br></br> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
                         <div key={i}>
                         <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
                             <CardContent>
@@ -295,9 +295,9 @@ function Table() {
                                 </Card> : ''}
                                 
                                 </div>
-                                {revealDealer ? <h4>Dealer Total: {calculateValue(dealerHand)}</h4> : ''}</p>
+                                {revealDealer ? <h4>Dealer Total: {calculateValue(dealerHand)}</h4> : ''}
 
-        <p><h4>Player Hand:</h4>
+        <h4>Player Hand:</h4>
             <div className="playerHand">{playerHand.length > 0 ? playerHand.map((card) => {
             return (
                 <Card sx={{width: 100, height: 150, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
@@ -317,7 +317,7 @@ function Table() {
                     <Button className="gameButton" variant="contained" onClick={() => doubleDown()}>Double Down</Button> : ''}
                 </> : ''
                 }
-        </p>
+        
         <h3>Available money: {playerMoney}</h3>
         {/* <h3>Current Card Count: {cardCount}</h3> */}
         </div>
