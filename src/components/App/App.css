@@ -130,7 +130,7 @@ pre {
 }
 
 .winner-container {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   left: 0;
   top: 0;
@@ -144,10 +144,18 @@ pre {
 
 .winner {
   border: 5px solid white;
+  position: fixed;
+  top: 15%;
   color: white;
   border-radius: 5px;
   padding: 2rem;
   background-color: darkgreen;
   width: 35em;
-  height: 600px;
+  height: 200px;
+}
+
+.close-icon {
+  position: relative;
+  left: 50%;
+  bottom: 7%;
 }
