@@ -71,6 +71,7 @@ function Table() {
     };
     
     const dealCards = async () => {
+        setToggleWinner(false);
         if (deck.length != 0 && gameStatus) {
             Swal.fire('You already have a game in progress');
             return;
@@ -111,6 +112,7 @@ function Table() {
     // This is what happens when a new game is initiated after an existing game is completed.
     const newGame = () => {
         setGameStatus(false);
+        setToggleWinner(false);
         setPlayerStatus(true);
         setRevealDealer(false);
         setWinner('');
@@ -122,7 +124,7 @@ function Table() {
 
     const doubleDown = () => {
         setPlayerMoney(playerMoney - 10)
-        setTotalBet(totalBet + 10)
+        setTotalBet(totalBet + 20)
         hitCard();
         playerStay();
     } 
@@ -201,31 +203,27 @@ function Table() {
         let total = 0;
         let ace = 0;
         for (let card of hand) {
-            if (card.value === 'A') {
-                ace += 1}
             if (typeof card.value != 'string') {
                 total += card.value
-            }
-            else {
-                if (ace === 1) {
-                    total += 11
-                    ace += 1
-                }
-                else {
+                } else {
                     total += 10;
-                }}}
-            if (total > 21 && ace > 0) {
+                    if (card.value === 'A') {
+                        total += 1;
+                        ace += 1;
+                    }}
                 while (total > 21 && ace > 0) {
                 console.log('Ace check', total)
                 total -= 10;
                 ace -= 1;}
             }
         return total;
-    }
+        }
 
     const updatePlayerStatus = () => {
         if (calculateValue(playerHand) > 21) {
-            setPlayerStatus(!playerStatus)
+            setWinner('Bust!')
+            setPlayerStatus(!playerStatus);
+            setToggleWinner(!toggleWinner);
         }
     }
 
@@ -327,11 +325,11 @@ function Table() {
                 </div>)}) : ''}
                 </div>
                 <h4>Total: {calculateValue(playerHand)}</h4>
-                {calculateValue(playerHand) > 21 ? <h4>BUST!</h4> : ''}
+                
                 {playerStatus ? <>
                     <Button className="gameButton" variant="contained" onClick={() => hitCard()}>Hit</Button>
                     <Button className="gameButton" variant="contained" onClick={() => playerStay()}>Stand</Button>
-                    {playerHand.length > 1 && (calculateValue(playerHand) == 9 || calculateValue(playerHand) == 10 || calculateValue(playerHand) == 11) ? 
+                    {playerHand.length === 2 && (calculateValue(playerHand) == 9 || calculateValue(playerHand) == 10 || calculateValue(playerHand) == 11) ? 
                     <Button className="gameButton" variant="contained" onClick={() => doubleDown()}>Double Down</Button> : ''}
                 </> : ''
                 }
@@ -340,7 +338,7 @@ function Table() {
         {/* <h3>Current Card Count: {cardCount}</h3> */}
         </div>
         {toggleInfo && <InfoModal closeModal={() => {setToggleInfo(!toggleInfo)}}/>}
-        {toggleWinner && <WinnerBanner winner={winner} closeModal={() => {setToggleWinner(!toggleWinner)}}/>}
+        {toggleWinner && <WinnerBanner dealCards={() => dealCards()} winner={winner} closeModal={() => {setToggleWinner(!toggleWinner)}}/>}
       
     </div>
   )
