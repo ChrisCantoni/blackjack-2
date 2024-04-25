@@ -2,9 +2,10 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Button from '@mui/material/Button'
-import {Card, CardContent, Typography, Tooltip} from '@mui/material';
-import InfoModal from '../InfoModal/InfoModal.jsx';
+import {Card, CardContent, Typography } from '@mui/material';
+
 import WinnerBanner from '../WinnerBanner/WinnerBanner.jsx'
+import Header from '../Header/Header.jsx';
 
 function Table() {
 
@@ -20,7 +21,7 @@ function Table() {
     const [cardCount, setCardCount] = useState(0);
     const [playerMoney, setPlayerMoney] = useState(500);
     const [totalBet, setTotalBet] = useState(10);
-    const [toggleInfo, setToggleInfo] = useState(false);
+    
     const [toggleWinner, setToggleWinner] = useState(false);
         // TODO: Here will be the shuffle dispatch
     // Shuffle itself will happen on the back end, yes?
@@ -111,7 +112,7 @@ function Table() {
 
     // This is what happens when a new game is initiated after an existing game is completed.
     const newGame = () => {
-        setGameStatus(false);
+        //setGameStatus(false);
         setToggleWinner(false);
         setPlayerStatus(true);
         setRevealDealer(false);
@@ -156,6 +157,7 @@ function Table() {
             }, 500); // Adjust delay as needed
             
         }
+        setGameStatus(false);
         setTimeout(() => {
             console.log('calculating winner')
             calculateWinner();
@@ -222,6 +224,7 @@ function Table() {
     const updatePlayerStatus = () => {
         if (calculateValue(playerHand) > 21) {
             setWinner('Bust!')
+            setGameStatus(false);
             setPlayerStatus(!playerStatus);
             setToggleWinner(!toggleWinner);
         }
@@ -257,24 +260,18 @@ function Table() {
         }
     }, [deck])
 
+    // TODO: Have a end of game function to check everything
 
     useEffect(() => {
         updatePlayerStatus()
     },[playerHand, dealerHand])
 
   return(
+    <div>
+    <Header createDeck={createDeck} dealCards={dealCards} deck={deck} />
     <div className="table">
-      <Tooltip title={`There are ${deck.length} cards in the Shoe`}>
-        <Button className="gameButton" variant="contained" onClick={() => createDeck()}>
-            Shuffle the Shoe
-        </Button>
-      </Tooltip>
-      <Button className="gameButton" variant="contained" onClick={() => dealCards()}>
-        Deal Cards
-      </Button>
-      <Button className="gameButton" variant="contained" onClick={() => setToggleInfo(!toggleInfo)}>
-        How to Play
-      </Button>
+      
+      
       
       <div className="playingArea">
         <h4>Dealer Hand:</h4> <div className="dealerHand">{dealerHand.length > 0 && revealDealer ? dealerHand.map((card, i) => (
@@ -337,9 +334,10 @@ function Table() {
         <h3>Available money: {playerMoney}</h3>
         {/* <h3>Current Card Count: {cardCount}</h3> */}
         </div>
-        {toggleInfo && <InfoModal closeModal={() => {setToggleInfo(!toggleInfo)}}/>}
+        
         {toggleWinner && <WinnerBanner dealCards={() => dealCards()} winner={winner} closeModal={() => {setToggleWinner(!toggleWinner)}}/>}
       
+    </div>
     </div>
   )
 }

@@ -6,9 +6,6 @@ import './App.css';
 function App (){
   return(
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Your Blackjack game!</h1>
-      </header>
       <Table />
     </div>
   )

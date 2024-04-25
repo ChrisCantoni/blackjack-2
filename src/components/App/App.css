@@ -26,7 +26,7 @@ pre {
 
 .table {
   color: white;
-  border-top: 5px solid gold;
+  border-top: 2px dashed gold;
   min-height: 730px;
 }
 
