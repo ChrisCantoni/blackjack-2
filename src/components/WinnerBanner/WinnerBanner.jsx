@@ -8,7 +8,7 @@ function WinnerBanner({closeModal, winner, dealCards}) {
             if (e.target.className === 'winner-container') closeModal();
         }}> 
             <div className="winner">
-            <Button sx={{color: 'white'}} className="close-icon" onClick={closeModal}><CloseIcon /></Button>
+            <Button sx={{color: 'gold'}} className="close-icon" onClick={closeModal}><CloseIcon /></Button>
         <h1>{winner}</h1>
         <Button variant="contained" onClick={dealCards}>Play Again?</Button>
         
