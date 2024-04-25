@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import Button from '@mui/material/Button'
 import {Card, CardContent, Typography, Tooltip} from '@mui/material';
 import InfoModal from '../InfoModal/InfoModal.jsx';
+import WinnerBanner from '../WinnerBanner/WinnerBanner.jsx'
 
 function Table() {
 
@@ -20,6 +21,7 @@ function Table() {
     const [playerMoney, setPlayerMoney] = useState(500);
     const [totalBet, setTotalBet] = useState(10);
     const [toggleInfo, setToggleInfo] = useState(false);
+    const [toggleWinner, setToggleWinner] = useState(false);
         // TODO: Here will be the shuffle dispatch
     // Shuffle itself will happen on the back end, yes?
 
@@ -154,7 +156,8 @@ function Table() {
         }
         setTimeout(() => {
             console.log('calculating winner')
-            calculateWinner()}, 1500);
+            calculateWinner();
+            setToggleWinner(!toggleWinner)}, 1500);
         }
         else {
             Swal.fire('This hand is over!')
@@ -165,7 +168,8 @@ function Table() {
         const calculateWinner = () => {
             const playerTotal = calculateValue(playerHand);
             const dealerTotal = calculateValue(dealerHand);
-        
+            console.log('Dealer total', dealerTotal)
+            console.log('Player total', playerTotal)
             if (playerTotal > 21) {
                 console.log('player total', playerTotal)
                 console.log('dealer total', dealerTotal)
@@ -188,8 +192,8 @@ function Table() {
                 console.log('player total', playerTotal)
                 console.log('dealer total', dealerTotal)
                 setWinner('Dealer wins!');
-            }
-        }
+            }}
+        
        
         
 
@@ -211,8 +215,10 @@ function Table() {
                     total += 10;
                 }}}
             if (total > 21 && ace > 0) {
+                while (total > 21 && ace > 0) {
                 console.log('Ace check', total)
                 total -= 10;
+                ace -= 1;}
             }
         return total;
     }
@@ -260,8 +266,6 @@ function Table() {
 
   return(
     <div className="table">
-      
-      <h3>{winner}</h3>
       <Tooltip title={`There are ${deck.length} cards in the Shoe`}>
         <Button className="gameButton" variant="contained" onClick={() => createDeck()}>
             Shuffle the Shoe
@@ -336,6 +340,7 @@ function Table() {
         {/* <h3>Current Card Count: {cardCount}</h3> */}
         </div>
         {toggleInfo && <InfoModal closeModal={() => {setToggleInfo(!toggleInfo)}}/>}
+        {toggleWinner && <WinnerBanner winner={winner} closeModal={() => {setToggleWinner(!toggleWinner)}}/>}
       
     </div>
   )
