@@ -71,7 +71,6 @@ function Table() {
     const dealCards = async () => {
         if (deck.length < 10) {
             createDeck();
-            dealCards();
         }
         setToggleWinner(false);
         if (deck.length != 0 && gameStatus) {
@@ -125,7 +124,6 @@ function Table() {
 
     // This is what happens when a new game is initiated after an existing game is completed.
     const newGame = () => {
-        //setGameStatus(false);
         setToggleWinner(false);
         setPlayerStatus(true);
         setRevealDealer(false);
@@ -262,11 +260,13 @@ function Table() {
     const updateDealerStatus = () => {
         const dealerTotal = calculateValue(dealerHand);
         if (dealerHand.length === 2 && dealerTotal === 21) {
-            setRevealDealer(!revealDealer)
-            setGameStatus(false);
-            console.log('Blackjack for dealer')
-            setWinner('Blackjack! Dealer wins!');
-            setToggleWinner(!toggleWinner);
+            setTimeout(() => {
+                setRevealDealer(!revealDealer)
+                setGameStatus(false);
+                console.log('Blackjack for dealer')
+                setWinner('Blackjack! Dealer wins!');
+                setToggleWinner(!toggleWinner);
+            }, 500);
         } else if (revealDealer && dealerHand.length > 0) {
             setTimeout(() => calculateWinner(), 1500);
     }}
@@ -287,7 +287,7 @@ function Table() {
 
     useEffect(() => {
         updateDealerStatus()
-        }, [dealerHand, revealDealer]);
+        }, [dealerHand]);
 
     // TODO: Have a end of game function to check everything
     // Make sure dealer blackjack actually triggers
@@ -341,8 +341,8 @@ function Table() {
         <h3>Player Hand:</h3>
             <div className="playerHand">{playerHand.length > 0 ? playerHand.map((card, i) => {
             return (
-                <div className="cardDisplay">
-                    <Card key={i} sx={{width: 120, height: 175, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
+                <div key={i} className="cardDisplay">
+                    <Card sx={{width: 120, height: 175, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
                         <CardContent sx={{justifyContent: 'center'}}>
                             <Typography variant="h3" color={card.suit == "Hearts" || card.suit == "Diamonds" ? "red" : 'black'}>
                                 {card.value}{cardSuit(card.suit)} 

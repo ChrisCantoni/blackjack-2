@@ -9,7 +9,7 @@ function WinnerBanner({closeModal, winner, dealCards}) {
         }}> 
             <div className="winner">
             <Button sx={{color: 'gold'}} className="close-icon" onClick={closeModal}><CloseIcon /></Button>
-        <h1>{winner}</h1>
+        <h1 className="winnerH1">{winner}</h1>
         <Button variant="contained" onClick={dealCards}>Play Again?</Button>
         
         </div>
