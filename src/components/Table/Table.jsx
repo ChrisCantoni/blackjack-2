@@ -64,18 +64,15 @@ function Table() {
     const dealRandomCards = () => {
         const randomIndex = Math.floor(Math.random() * deck.length);
         const dealtCard = deck[randomIndex];
-    
         setDeck((prevDeck) => prevDeck.filter((card) => card !== dealtCard));
-    
-        if (typeof dealtCard.value != 'string' && dealtCard.value < 10) {
-                 setCardCount(prevCount => prevCount + 1)
-            } else {
-                setCardCount(prevCount => prevCount -1)
-            }
         return dealtCard;
     };
     
     const dealCards = async () => {
+        if (deck.length < 10) {
+            createDeck();
+            dealCards();
+        }
         setToggleWinner(false);
         if (deck.length != 0 && gameStatus) {
             Swal.fire({
@@ -262,6 +259,18 @@ function Table() {
         }
     }
 
+    const updateDealerStatus = () => {
+        const dealerTotal = calculateValue(dealerHand);
+        if (dealerHand.length === 2 && dealerTotal === 21) {
+            setRevealDealer(!revealDealer)
+            setGameStatus(false);
+            console.log('Blackjack for dealer')
+            setWinner('Blackjack! Dealer wins!');
+            setToggleWinner(!toggleWinner);
+        } else if (revealDealer && dealerHand.length > 0) {
+            setTimeout(() => calculateWinner(), 1500);
+    }}
+
 // Provides the proper symbol for each suit
     const cardSuit = (suit) => {
         switch (suit) {
@@ -277,22 +286,11 @@ function Table() {
     }
 
     useEffect(() => {
-        const dealerTotal = calculateValue(dealerHand);
-        if (revealDealer && dealerHand.length > 0) {
-            setTimeout(() => calculateWinner(), 1500);
-        } else if (dealerTotal === 21) {
-            setTimeout(() => playerStay(), 1500);
-            setWinner('Blackjack! Dealer wins!')
-        }
-    }, [dealerHand, revealDealer]);
-
-    useEffect(() => {
-        if (gameStatus && deck.length < 10) {
-            createDeck();
-        }
-    }, [deck])
+        updateDealerStatus()
+        }, [dealerHand, revealDealer]);
 
     // TODO: Have a end of game function to check everything
+    // Make sure dealer blackjack actually triggers
 
     useEffect(() => {
         updatePlayerStatus()
