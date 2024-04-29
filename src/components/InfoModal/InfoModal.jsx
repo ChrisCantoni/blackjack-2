@@ -23,10 +23,11 @@ function InfoModal({closeModal}) {
             <div className="modal">
                 <Typography variant="h3" sx={{marginBottom: 2}}>How to Play</Typography>
                 <div>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="accordion">
+        <Accordion expanded={true} className="accordion" sx={{boxShadow: 'none'}}>
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="accordion" sx={{boxShadow: 'none'}}>
         <AccordionSummary
             sx={{border: '5px solid gold', borderBottom:`${expanded === 'panel1' ? "none" : "5px solid gold"}`,
-            borderRadius: '25px'  }}
+            borderRadius: '25px'}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
@@ -40,10 +41,10 @@ function InfoModal({closeModal}) {
                 But if the Shoe gets too low it will automatically reshuffle.
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className='accordion'>
+      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className='accordion' sx={{boxShadow: 'none'}}>
         <AccordionSummary
             sx={{ backgroundColor: 'darkgreen', border: '5px solid gold', 
-            borderBottom:`${expanded === 'panel2' ? "none" : "5px solid gold"}`, borderRadius: '25px'  }}
+            borderBottom:`${expanded === 'panel2' ? "none" : "5px solid gold"}`, borderRadius: '25px'}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
@@ -54,7 +55,7 @@ function InfoModal({closeModal}) {
                 Every time you choose to hit, you get another card.
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className='accordion'>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className='accordion' sx={{boxShadow: 'none'}}>
         <AccordionSummary
             sx={{ backgroundColor: 'darkgreen', border:'5px solid gold', 
             borderBottom:`${expanded === 'panel3' ? "none" : "5px solid gold"}`, borderRadius: '25px'}}
@@ -74,7 +75,7 @@ function InfoModal({closeModal}) {
             </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} className='accordion'>
+      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} className='accordion' sx={{boxShadow: 'none'}}>
         <AccordionSummary
             sx={{ backgroundColor: 'darkgreen', border: '5px solid gold', 
             borderBottom:`${expanded === 'panel4' ? "none" : "5px solid gold"}`, borderRadius: '25px'  }}
@@ -89,6 +90,7 @@ function InfoModal({closeModal}) {
             that hand, unless you have Blackjack yourself, in which case you will receive your bet back.
             Once you decide to stay, the dealer will reveal their hand and hit until they reach 17 or higher. Whoever is closest to 21 without going over wins.
         </AccordionDetails>
+      </Accordion>
       </Accordion>
     </div>
             </div>
