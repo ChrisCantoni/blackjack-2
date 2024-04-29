@@ -338,7 +338,7 @@ function Table() {
                                 {revealDealer ? <h3>Dealer Total: {calculateValue(dealerHand)}</h3> : ''}
 
         <h3>Player Hand:</h3>
-            <div className="playerHand">{playerHand.length > 0 ? playerHand.map((card, i) => {
+            <div className="playerHand">{playerHand.length > 1 ? playerHand.map((card, i) => {
             return (
                 <div key={i} className="cardDisplay">
                     <Card sx={{width: 120, height: 175, margin: 2}} className={card.suit == "Hearts" || card.suit == "Diamonds" ? 'redCard' : 'blackCard'}>
