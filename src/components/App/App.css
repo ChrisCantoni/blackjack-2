@@ -55,6 +55,7 @@ pre {
 
 .cardDisplay {
   border: 2px dashed gold !important;
+  margin: 0 5px;
 }
 
 .playerHand {
@@ -105,37 +106,6 @@ pre {
   color: white !important;
 }
 
-/* .infoButton {
-  width: 500px;
-} */
-/* 
-.accordion_item.active .button {
-  background-color: #105057;
-}
-.description {
-  max-height: 0;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  text-transform: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-  transition-property: max-height 0.5s ease;
-  z-index: 1;
-  position: relative;
-
-}
-.description .open {
-  max-height: 1000px;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  text-transform: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-  transition-property: max-height 0.5s ease;
-  z-index: 1;
-  position: relative;
-} */
-
-/* .infoTitle {
-  text-align: center;
-} */
-
 .MuiAccordionSummary-content {
   justify-content: center;
 }
@@ -173,4 +143,8 @@ pre {
   position: relative;
   left: 50%;
   bottom: 18%;
+}
+
+.beforeDeal {
+  background-color: red !important;
 }

@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Button from '@mui/material/Button'
 import {Card, CardContent, Typography } from '@mui/material';
-
 import WinnerBanner from '../WinnerBanner/WinnerBanner.jsx'
 import Header from '../Header/Header.jsx';
+import EmptyTable from '../EmptyTable/EmptyTable.jsx';
 
 function Table() {
 
@@ -266,7 +266,7 @@ function Table() {
                 console.log('Blackjack for dealer')
                 setWinner('Blackjack! Dealer wins!');
                 setToggleWinner(!toggleWinner);
-            }, 500);
+            }, 1000);
         } else if (revealDealer && dealerHand.length > 0) {
             setTimeout(() => calculateWinner(), 1500);
     }}
@@ -333,8 +333,7 @@ function Table() {
                                 </Card>
                                 </div>
                                 </>
-                                 : ''}
-                                
+                                 : <EmptyTable/>}
                                 </div>
                                 {revealDealer ? <h3>Dealer Total: {calculateValue(dealerHand)}</h3> : ''}
 
@@ -349,7 +348,8 @@ function Table() {
                             </Typography>
                         </CardContent>
                     </Card> 
-                </div>)}) : ''}
+                </div>)}) : <EmptyTable/>}
+                                 
                 </div>
                 <h3>Total: {calculateValue(playerHand)}</h3>
                 
