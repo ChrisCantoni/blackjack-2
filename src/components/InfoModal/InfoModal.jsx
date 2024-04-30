@@ -35,12 +35,14 @@ function InfoModal({closeModal}) {
           
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
-        <p>To start, there are no cards. There's not even a deck! Blackjack traditionally uses several decks of cards stored in a "shoe" (not an actual shoe). 
-        This Shoe contains two full decks, so it's possible you will encounter the same card. This isn't a bug, it's part of the fun! 
-        At any time you can hover over the Shuffle button to see how many cards are left in the Shoe. 
-        This way, you can practice your card counting without worrying about an angry pit boss throwing you out. Have at it!</p>
-        
-        <p>If the Shoe gets too low (less than 10 cards) it will automatically reshuffle.</p>
+            <Typography>
+            <p>To start, there are no cards. There's not even a deck! Blackjack traditionally uses several decks of cards stored in a "shoe" (not an actual shoe). 
+            This Shoe contains two full decks, so it's possible you will encounter the same card. This isn't a bug, it's part of the fun!</p> 
+            <p>At any time you can hover over the Shuffle button to see how many cards are left in the Shoe. 
+            This way, you can practice your card counting without worrying about an angry pit boss throwing you out. Have at it!</p>
+            
+            <p>If the Shoe gets too low (less than 10 cards) it will automatically reshuffle.</p>
+            </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className='accordion' sx={{boxShadow: 'none'}}>
@@ -54,8 +56,10 @@ function InfoModal({closeModal}) {
           
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
-        <p>Every time you click Hit, you'll get another card. If you hit Stay, your job is over and its the dealer's turn. 
-        Unless you click Hit too many times. Then your game will be over because you busted!</p>
+            <Typography>
+            <p>Every time you click Hit, you'll get another card. If you hit Stay, your job is over and its the dealer's turn. 
+            Unless you click Hit too many times. Then your game will be over because you busted!</p>
+            </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className='accordion' sx={{boxShadow: 'none'}}>
@@ -95,13 +99,33 @@ function InfoModal({closeModal}) {
           <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Dealer</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
+            <Typography>
             <p>
-            Only one of the dealer's cards is revealed to start. Once you are happy with your cards and click Stay, 
+            Only one of the dealer's cards is revealed to start. Once you are happy with your cards and click <strong>Stay</strong>, 
             the dealer's full hand will be revealed and they will hit until they reach 17 or higher.</p> 
 
-            <p>The dealer will immediately let you know if they have Blackjack and you will simply lose that hand, 
+            <p>The dealer will immediately let you know if they have <strong>Blackjack</strong> and you will simply lose that hand, 
             unless you have Blackjack yourself, in which case you will receive your bet back.
             </p>
+            </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} className='accordion' sx={{boxShadow: 'none'}}>
+        <AccordionSummary
+            sx={{ backgroundColor: 'darkgreen', border: '5px solid gold', 
+            borderBottom:`${expanded === 'panel5' ? "none" : "5px solid gold"}`, borderRadius: '25px'  }}
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3-content"
+          id="panel3-header"
+        >
+          <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Blackjack</Typography>
+        </AccordionSummary>
+        <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
+            <Typography>
+            <p>An Ace and a face card (or 10) makes <strong>21</strong>. If you are dealt that hand to start, you win a <strong>Blackjack!</strong></p>
+             <p>You'll receive 1.5x your bet!</p>
+
+            </Typography>
         </AccordionDetails>
       </Accordion>
       </Accordion>
