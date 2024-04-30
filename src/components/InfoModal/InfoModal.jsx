@@ -21,7 +21,7 @@ function InfoModal({closeModal}) {
             if (e.target.className === 'modal-container') closeModal();
         }}>
             <div className="modal">
-                <Typography variant="h3" sx={{marginBottom: 2}}>How to Play</Typography>
+                <Typography variant="h3" sx={{marginBottom: 4}}>How to Play</Typography>
                 <div>
         <Accordion expanded={true} className="accordion" sx={{boxShadow: 'none'}}>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className="accordion" sx={{boxShadow: 'none'}}>
@@ -35,10 +35,12 @@ function InfoModal({closeModal}) {
           
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
-                To start, there are no cards. To create the decks for playing, click <em>Shuffle the Shoe</em>. 
-                The Shoe contains two full decks, so it's possible you will encounter the same card. 
-                This isn't a bug, it's part of the fun! At any time you can hover over the Shuffle button to see how many cards are left in the Shoe.
-                But if the Shoe gets too low it will automatically reshuffle.
+        <p>To start, there are no cards. There's not even a deck! Blackjack traditionally uses several decks of cards stored in a "shoe" (not an actual shoe). 
+        This Shoe contains two full decks, so it's possible you will encounter the same card. This isn't a bug, it's part of the fun! 
+        At any time you can hover over the Shuffle button to see how many cards are left in the Shoe. 
+        This way, you can practice your card counting without worrying about an angry pit boss throwing you out. Have at it!</p>
+        
+        <p>If the Shoe gets too low (less than 10 cards) it will automatically reshuffle.</p>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className='accordion' sx={{boxShadow: 'none'}}>
@@ -52,7 +54,8 @@ function InfoModal({closeModal}) {
           
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
-                Every time you choose to hit, you get another card.
+        <p>Every time you click Hit, you'll get another card. If you hit Stay, your job is over and its the dealer's turn. 
+        Unless you click Hit too many times. Then your game will be over because you busted!</p>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className='accordion' sx={{boxShadow: 'none'}}>
@@ -67,11 +70,17 @@ function InfoModal({closeModal}) {
           <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Score</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
-            <Typography>If you're unfamiliar with Blackjack, it's very simple. You receive cards trying to get as
-            close to 21 as possible without going over. Each card is worth its number except for face cards: K, Q, J which are all worth 10.
-            Aces can be worth 11 or 1. So getting an ace and a 7 would be worth 18, but if you put a five with it, the Ace becomes
-            a 1 and you end up with 13. 
-            You receive 2 cards to start and from there you can either receive another card, <strong>hit</strong>, or stop with the hand you have, stay.
+            <Typography>
+                <p>
+                Scoring in Blackjack is simple. You want the value of your cards as close to 21 as possible without going over. 
+                Each card is worth its stated value. Face cards like K, Q, J are all worth 10. Therefore, 10 is the most common card value 
+                (this is useful for card counting)</p>
+
+                <p>Aces can be worth 11 or 1. So getting an ace and a 7 would be worth 18, but if you put a five with it (which would add up to 23), 
+                    you would bust, so the Ace magically becomes a 1 and you end up with 13.</p> 
+
+
+                <p>You receive 2 cards to start and from there you can either receive another card, <strong>hit</strong>, or stop with the hand you have, stay.</p>
             </Typography>
         </AccordionDetails>
       </Accordion>
@@ -83,12 +92,16 @@ function InfoModal({closeModal}) {
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Deal</Typography>
+          <Typography className='infoTitle' variant="h4" sx={{color: 'white'}}>The Dealer</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{borderBottom: 'solid gold', borderBottomWidth: '4px'}}>
-        Only one of the dealer's cards is revealed to start, however the dealer will immediately let you know if they have Blackjack and you will simply lose
-            that hand, unless you have Blackjack yourself, in which case you will receive your bet back.
-            Once you decide to stay, the dealer will reveal their hand and hit until they reach 17 or higher. Whoever is closest to 21 without going over wins.
+            <p>
+            Only one of the dealer's cards is revealed to start. Once you are happy with your cards and click Stay, 
+            the dealer's full hand will be revealed and they will hit until they reach 17 or higher.</p> 
+
+            <p>The dealer will immediately let you know if they have Blackjack and you will simply lose that hand, 
+            unless you have Blackjack yourself, in which case you will receive your bet back.
+            </p>
         </AccordionDetails>
       </Accordion>
       </Accordion>

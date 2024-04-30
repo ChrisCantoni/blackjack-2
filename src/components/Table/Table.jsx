@@ -213,6 +213,7 @@ function Table() {
             } else if (playerTotal === dealerTotal) {
                 console.log('player total', playerTotal)
                 console.log('dealer total', dealerTotal)
+                setPlayerMoney(playerMoney + 10)
                 setWinner("It's a push. No winner."); 
             } else if (playerTotal > dealerTotal) {
                 console.log('player total', playerTotal)
@@ -265,6 +266,10 @@ function Table() {
                 setGameStatus(false);
                 console.log('Blackjack for dealer')
                 setWinner('Blackjack! Dealer wins!');
+                if (calculateValue(playerHand) === 21) {
+                    setWinner(`Double Blackjack! It's a push!`);
+                    setPlayerMoney(playerMoney + 10);
+                }
                 setToggleWinner(!toggleWinner);
             }, 1000);
         } else if (revealDealer && dealerHand.length > 0) {
@@ -336,7 +341,6 @@ function Table() {
                                  : <EmptyTable/>}
                                 </div>
                                 {revealDealer ? <h3>Dealer Total: {calculateValue(dealerHand)}</h3> : ''}
-
         <h3>Player Hand:</h3>
             <div className="playerHand">{playerHand.length > 1 ? playerHand.map((card, i) => {
             return (
@@ -359,8 +363,7 @@ function Table() {
                     {playerHand.length === 2 && (calculateValue(playerHand) == 9 || calculateValue(playerHand) == 10 || calculateValue(playerHand) == 11) ? 
                     <Button className="gameButton" variant="contained" onClick={() => doubleDown()}>Double Down</Button> : ''}
                 </> : ''
-                }
-        
+                }  
         <h2>Available money: ${playerMoney}</h2>
         {/* <h3>Current Card Count: {cardCount}</h3> */}
         </div>

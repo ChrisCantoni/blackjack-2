@@ -3,6 +3,7 @@
   background-color: darkgreen;
   border: 5px solid gold;
   min-height: 880px;
+  height: 98vh;
 }
 
 .App-header {
@@ -28,6 +29,8 @@ pre {
   color: white;
   border-top: 2px dashed gold;
   min-height: 730px;
+  overflow-y: hidden;
+
 }
 
 .swalFire {
@@ -80,13 +83,16 @@ pre {
 }
 
 .modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 5px solid gold;
   color: gold;
   border-radius: 25px;
   padding: 2rem;
   background-color: darkgreen;
   width: 35em;
-  height: 600px;
+  height: 700px;
 }
 
 .redCard {
@@ -104,6 +110,8 @@ pre {
 .accordion {
   background-color: darkgreen !important;
   color: white !important;
+
+  
 }
 
 .MuiAccordionSummary-content {
